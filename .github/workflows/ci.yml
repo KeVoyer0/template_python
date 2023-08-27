@@ -25,7 +25,7 @@ jobs:
         # uses: mamba-org/setup-micromamba@875557da4ee020f18df03b8910a42203fbf02da1
         uses: mamba-org/setup-micromamba@v1.4.3
         with:
-          environment-file: pixi.lock
+          environment-file: conda-lock.yml
           environment-name: ml
           init-shell: bash
           cache-downloads: true
