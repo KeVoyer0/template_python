@@ -32,13 +32,6 @@ jobs:
           environment-name: ml
           environment-file: conda-lock.yml
           init-shell: bash
-          cache-downloads: true
-          # Cache key to use for caching.
-          cache-downloads-key: true
-          # Whether to cache the environment or not.
-          cache-environment: true
-          # Cache key to use for caching.
-          cache-environment-key: true
           # Which kind of cleanup to do after the action.
           # `'none'` - do not cleanup anything.
           # `'shell-init'` - cleanup only the shell initialization scripts.
