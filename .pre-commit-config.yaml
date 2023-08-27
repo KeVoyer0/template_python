@@ -4,7 +4,9 @@ default_stages: [commit, push]
 
 default_language_version:
   python: python3.11
+
 minimum_pre_commit_version: 2.20.0
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -73,7 +75,7 @@ repos:
     rev: "0.6.1"
     hooks:
       - id: nbstripout
-        exclude: examples\/user_classification\.ipynb
+        exclude: examples\*.ipynb
         args: ["--drop-empty-cells"]
 
 
@@ -93,15 +95,3 @@ repos:
     rev: v1.1.324
     hooks:
       - id: pyright
-
-  # - repo: https://github.com/prefix-dev/pixi
-  #   rev: "0.2.0"
-  #   hooks:
-  #     - id: poetry-check
-  #       stages: [commit-msg]
-  #     - id: poetry-lock
-  #       stages: [commit-msg]
-  #     - id: poetry-export
-  #       stages: [commit-msg]
-  #       args:
-  #         ["-f", "requirements.txt", "-o", "requirements.txt", "--only", "main"]
