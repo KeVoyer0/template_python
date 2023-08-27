@@ -1,0 +1,58 @@
+name = "template-python"
+version = "1.0.0"
+description = ""
+authors = ["Keven Voyer <keven.voyer.1@gmail.com>"]
+readme = "README.md"
+
+[tool.pytest.ini_options]
+filterwarnings = [""]
+# addopts = "-n auto"
+
+[tool.vulture]
+exclude = [""]
+ignore_decorators = ["@click.command", "@click.group"]
+ignore_names = [""]
+make_whitelist = true
+min_confidence = 80
+paths = [
+  "template_python"
+]
+sort_by_size = true
+verbose = true
+
+[tool.pyright]
+venvPath = "."
+venv = ".pixi/env"
+
+[tool.ruff]
+select = ["ALL"]
+
+# All Documentation related + The file is executable but no shebang is present
+ignore = ["D100","D101","D104"]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Exclude a variety of commonly ignored directories.
+exclude = [".git", ".ruff_cache", ".pixi", "build", "dist", "typings", ".vscode"]
+
+# Same as Black.
+line-length = 88
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.11.
+target-version = "py311"
+# Avoid automatically removing unused imports in __init__.py files.
+ignore-init-module-imports = true
+# Enable autofix behavior by-default when running ruff
+fix=true
+# A list of objects that should be treated equivalently to a logging.Logger object.
+# TODO not sure if this is needed
+logger-objects = ["logger"]
+
+[tool.ruff.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
