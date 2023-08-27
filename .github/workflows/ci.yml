@@ -14,12 +14,6 @@ jobs:
         with:
           submodules: true
           
-      - name: Install Python
-        id: setup-python
-        uses: actions/setup-python@v4.7.0
-        with:
-          python-version: "3.11"
-          
       - name: Rename Lock File
         run: mv pixi.lock conda-lock.yml
         shell: bash
