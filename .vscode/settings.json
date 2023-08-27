@@ -1,0 +1,7 @@
+{
+  "editor.defaultFormatter": "charliermarsh.ruff",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "python.analysis.typeCheckingMode": "strict",
+  "python.defaultInterpreterPath": ".pixi/env/bin/python"
+}
