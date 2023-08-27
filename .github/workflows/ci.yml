@@ -43,7 +43,7 @@ jobs:
           
 
       - name: Import numpy in micromamba environment (bash)
-        run: python -c "import numpy"
+        run: python -c "import pandas"
         shell: bash -el {0}
 
       - name: Run custom command in micromamba environment
