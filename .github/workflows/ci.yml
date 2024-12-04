@@ -14,26 +14,18 @@ jobs:
         with:
           submodules: true
           
-      - name: Install Python
-        id: setup-python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
-          
+      - name: Rename Lock File
+        run: mv pixi.lock conda-lock.yml
+        shell: bash
+        
       - name: setup-micromamba
         # You may pin to the exact commit or the version.
         # uses: mamba-org/setup-micromamba@875557da4ee020f18df03b8910a42203fbf02da1
         uses: mamba-org/setup-micromamba@v1.4.3
         with:
-          environment-file: pixi.lock
+          environment-name: ml
+          environment-file: conda-lock.yml
           init-shell: bash
-          cache-downloads: true
-          # Cache key to use for caching.
-          cache-downloads-key: true
-          # Whether to cache the environment or not.
-          cache-environment: true
-          # Cache key to use for caching.
-          cache-environment-key: true
           # Which kind of cleanup to do after the action.
           # `'none'` - do not cleanup anything.
           # `'shell-init'` - cleanup only the shell initialization scripts.
@@ -43,7 +35,7 @@ jobs:
           
 
       - name: Import numpy in micromamba environment (bash)
-        run: python -c "import numpy"
+        run: python -c "import pandas"
         shell: bash -el {0}
 
       - name: Run custom command in micromamba environment
