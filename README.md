@@ -67,10 +67,10 @@ A reproducible Python project template with multi-Python version testing, integr
         pixi run test
         ```
 
-        *To test a specific Python version (e.g., Python 3.8):*
+        *To test a specific Python version (e.g., Python 3.11):*
 
         ```bash
-        pixi run -e py38 test
+        pixi run -e py311 test
         ```
 
     - Linting:
