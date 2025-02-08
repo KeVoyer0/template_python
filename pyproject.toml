@@ -1,10 +1,10 @@
 [project]
-name = "src/package_name"
+name = "package_name"
 version = "0.1.0"
 description = "A reproducible Python project with multi-environment testing"
-authors = [{name = "K1", email = "keven.voyer.1@email.com"}]
+authors = [{ name = "K1", email = "keven.voyer.1@email.com" }]
 requires-python = ">=3.11,<4.0"
-dependencies = [ "numpy>=2.2.2,<3", "pandas>=2.2.3,<3" ]
+dependencies = ["numpy>=2.2.2,<3", "pandas>=2.2.3,<3"]
 
 [build-system]
 requires = ["hatchling"]
@@ -12,14 +12,13 @@ build-backend = "hatchling.build"
 
 # --- Pixi-specific configurations ---
 [tool.pixi.project]
-# channels = ["nvidia/label/cuda-11.8.0", "nvidia", "conda-forge", "pytorch"]
-# platforms = ["linux-64"]
-channels = ["conda-forge"]
+channels = ["nvidia/label/cuda-11.8.0", "nvidia", "conda-forge", "pytorch"]
 platforms = ["linux-64"]
+
 
 # Cross-environment dependencies
 [tool.pixi.dependencies]
-python = ">=3.11,<4.0"  # Base Python constraint
+python = ">=3.11,<4.0" # Base Python constraint
 numpy = ">=2.2.2,<3"
 pandas = ">=2.2.3,<3"
 
@@ -53,26 +52,16 @@ python = "3.11.*"
 
 # Optional dependencies groups
 [project.optional-dependencies]
-test = [
-    "pytest>=8.3.4,<9",
-    "pytest-cov>=6.0.0,<7"
-]
-docs = [
-    "sphinx>=8.1.3,<9",
-    "sphinx-rtd-theme>=3.0.1,<4"
-]
+test = ["pytest>=8.3.4,<9", "pytest-cov>=6.0.0,<7"]
+docs = ["sphinx>=8.1.3,<9", "sphinx-rtd-theme>=3.0.1,<4"]
 dev = [
     "ruff>=0.9.4,<0.10",
     "pyright>=1.1.393,<2",
     "vulture>=2.14,<3",
-    "ipykernel>=6.29.5,<7"
+    "ipykernel>=6.29.5,<7",
 ]
 
-prod = [
-    "gunicorn>=20.1.0",
-    "uvicorn>=0.22.0",
-    "anyio>=3.0"
-]
+prod = ["gunicorn>=20.1.0", "uvicorn>=0.22.0", "anyio>=3.0"]
 # Map optional dependencies to Pixi features :cite[4]:cite[8]
 [tool.pixi.feature.test.dependencies]
 pytest = ">=8.3.4,<9"
@@ -99,22 +88,28 @@ uvicorn = ">=0.22.0"
 # Add your production-only dependencies here
 
 
-
-
-
-
-
 # --- Linter configurations ---
 [tool.ruff]
 line-length = 120
 target-version = "py311"
 
-include =["src/**"]
-exclude = ["**/tests/*", "docs/*",".git", ".ruff_cache", ".pixi", "build", "dist", "typings", ".vscode"]
+include = ["src/**"]
+exclude = [
+    "**/tests/*",
+    "docs/*",
+    ".git",
+    ".ruff_cache",
+    ".pixi",
+    "build",
+    "dist",
+    "typings",
+    ".vscode",
+]
 
 
 [tool.ruff.lint]
-select = ["ALL",
+select = [
+    "ALL",
     # "E", "W", "F", # Basic errors/warnings
     # "C","N","Q", # Comment rules
     # "UP",           # Pyupgrade rules
@@ -124,7 +119,7 @@ select = ["ALL",
     # "ANN",          # Type annotations
     # "RUF",          # Ruff-specific rules
 ]
-ignore = ["D100", "D203","D213","COM812"]
+ignore = ["D100", "D203", "D213", "COM812"]
 unfixable = []
 
 [tool.pyright]
@@ -134,10 +129,30 @@ venvPath = ".pixi/envs"
 stubPath = "./typings"
 typeCheckingMode = "strict"
 include = ["src/**"]
-exclude = ["**/tests/*", "docs/*",".git", ".ruff_cache", ".pixi", "build", "dist", "typings", ".vscode"]
+exclude = [
+    "**/tests/*",
+    "docs/*",
+    ".git",
+    ".ruff_cache",
+    ".pixi",
+    "build",
+    "dist",
+    "typings",
+    ".vscode",
+]
 
 [tool.vulture]
-exclude = ["**/tests/*", "docs/*",".git", ".ruff_cache", ".pixi", "build", "dist", "typings", ".vscode"]
+exclude = [
+    "**/tests/*",
+    "docs/*",
+    ".git",
+    ".ruff_cache",
+    ".pixi",
+    "build",
+    "dist",
+    "typings",
+    ".vscode",
+]
 ignore_decorators = ["@click.command", "@click.group"]
 ignore_names = [".*", "_*", "test_*"]
 make_whitelist = true
@@ -157,12 +172,17 @@ serve-docs = "sphinx-autobuild docs/source docs/build"
 
 [tool.pixi.feature.dev.tasks]
 lint = "ruff check . && pyright && vulture ."
-format = "ruff format ."  # New formatting task
+format = "ruff format ."                      # New formatting task
 typecheck = "pyright src/package_name"
 deadcode = "vulture src/package_name"
 coverage = "pytest tests/"
 # Composite tasks
-all-checks = { cmd = "echo 'Running all checks'", depends-on = ["lint", "test", "typecheck", "deadcode"] }
+all-checks = { cmd = "echo 'Running all checks'", depends-on = [
+    "lint",
+    "test",
+    "typecheck",
+    "deadcode",
+] }
 
 [tool.pixi.feature.prod.tasks]
 start = "gunicorn your_project.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000"
