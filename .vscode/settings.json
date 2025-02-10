@@ -1,5 +1,7 @@
 {
   "python.defaultInterpreterPath": ".pixi/envs/dev/bin/python",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.importFormat": "absolute",
   "notebook.formatOnSave.enabled": true,
   "notebook.codeActionsOnSave": {
     "notebook.source.fixAll": "explicit",
